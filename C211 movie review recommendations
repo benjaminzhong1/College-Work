@@ -1,0 +1,68 @@
+#include <iostream>
+#include <cstdlib>
+#include <cmath>
+using namespace std;
+
+const int reviewers = 4;
+const int movies = 6;
+
+double Distance(int reviews[][movies],int reviewerNum,int userRatings[]);
+
+double Distance(int reviews[][movies],int reviewerNum,int userRatings[]){ 
+  double d = 0;
+  if ((reviewerNum < 0) || (reviewerNum >= reviewers))
+    return 0; 
+  int i; 
+  for (i=0; i<movies; i++){
+    if (userRatings[i] >=0){d+= (userRatings[i] - reviews[reviewerNum][i])*(userRatings[i] - reviews[reviewerNum][i]);}
+  }
+  if (d>0){
+    return sqrt(d);}
+  else
+    return 0;
+  }
+
+
+int main() {
+  
+  int reviews[reviewers][movies]; 
+  int userRatings[movies];
+
+  reviews[0][0] = 3; reviews[0][1] = 1; reviews[0][2] = 5; reviews[0][3] = 2;  reviews[0][4] = 1; reviews[0][5] = 5; reviews[1][0] = 4; reviews[1][1] = 2; reviews[1][2] = 1; reviews[1][3] = 4; reviews[1][4] = 2; reviews[1][5] = 4; reviews[2][0] = 3; reviews[2][1] = 1; reviews[2][2] = 2; reviews[2][3] = 4; reviews[2][4] = 4; reviews[2][5] = 1; reviews[3][0] = 5; reviews[3][1] = 1; reviews[3][2] = 4; reviews[3][3] = 2; reviews[3][4] = 4; reviews[3][5] = 2;
+
+  int movieNum;
+  for(movieNum = 0; movieNum < movies; movieNum++){
+    userRatings[movieNum] = -1;
+  }
+  movieNum = 1; 
+  while (movieNum != 0){
+    cout << "Enter a movie to rate (100-105).  " <<     "Enter 0 to exit and get recommendations." << endl;     cin >> movieNum;
+    if (movieNum == 0) break;     if ((movieNum < 0) || (movieNum > (movies+100))){
+      cout << "That is an invalid movie number." << endl;  movieNum = 1;
+    }
+    else{
+      int rating;
+      cout << "Enter rating (1-5) for this movie." << endl;
+      cin >> rating;
+      if ((rating < 1) || (rating >5)){
+        cout << "Invalid rating.  It must be from 1-5." << endl;}
+      else{   
+        userRatings[movieNum-100] = rating;}
+    }
+  }
+  double closest = 9999; 
+  int closestNum = 0;
+
+  for (int i=0; i<reviewers; i++){   double dist = Distance(reviews, i, userRatings);   
+    if (dist < closest){
+      closest = dist;closestNum = i;}   }
+
+  cout << "The closest reviewer is number " << closestNum << endl; 
+  cout << "Predictions for movies you have not yet seen:" << endl; 
+  for (int i=0; i<movies; i++){
+    if (userRatings[i] == -1){
+      cout << "Movie " << (i+100) <<         " : Predicted Rating = " << reviews[closestNum][i]<< endl;    }
+  }
+  cout << endl; 
+  return 0;
+}
