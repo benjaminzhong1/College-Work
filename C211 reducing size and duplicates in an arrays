@@ -1,0 +1,41 @@
+#include <iostream>
+using namespace std;
+
+void deleteDuplicates (char array[], int&size);
+
+void deleteDuplicates(char array[], int&size){
+  for(int i =0; i<size ; i++){
+    for(int j = i+1; j<size; j++){
+      if (array[j]==array[i]){
+        for(int k =j;k<size;k++){
+          array[k] = array[k+1];}
+          j--;
+          size--;
+      }
+    }
+  }
+}
+
+int length (char array[]);
+
+int length(char array[]){
+  int x = 0;
+  for (int i =0 ;'\0' != array[i];i++){
+    x++;
+  }
+  return x;
+}
+
+int main(){
+  char arr1[81] = "hello, oh, oh, oh, oh";
+  cout<<arr1<<endl;
+  int size;
+  size = length(arr1);
+  cout << "size = " << size << endl;
+
+  deleteDuplicates(arr1, size);
+
+  cout << "reduced array = " << arr1 << endl;
+  cout << "reduced array size = " << size-1 << endl;
+  return 0;
+}
