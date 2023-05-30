@@ -1,0 +1,52 @@
+#include <iostream>
+using namespace std;
+
+string blowsPast(string &a){
+  int x=a.find("blows");
+  a.replace(x,5,"blew");
+  return a;
+}
+
+string notLame(string &a){
+  int x=a.find("lame");
+  a.insert(x,"not ");
+  return a;
+}
+
+string amazing(string &a){
+  int x=a.find("lame");
+  a.replace(x,4,"amazing");
+  return a;
+}
+
+// string wow(string &a){
+//   int x=a.find("Ngl, ");
+//   int y=
+//   string cd=a.substr(x, )
+//   string y=a.substr()
+//   int x=a.find("this is pretty ");
+//   a.erase(
+  
+//   return a;
+// }
+
+int main() {
+  string s = "This blows!";
+  cout << "Before:\t" << s << endl;
+  blowsPast(s);
+  cout << "After:\t" << s << endl << endl;
+  string w = "The wind blows!";
+  cout << "Before:\t" << w << endl;
+  blowsPast(w);
+  cout << "After:\t" << w << endl << endl;
+  string f = "The class is lame!";
+  cout << "Before:\t" << f << endl;
+  notLame(f);
+  cout << "After:\t" << f << endl << endl;
+  string x = "Ngl, this is pretty lame!";
+  cout << "Before:\t" << x << endl;
+  amazing(x);
+  cout << "After:\t" << x << endl << endl;
+  // cout << wow(x) << endl;
+  return 0;
+}
