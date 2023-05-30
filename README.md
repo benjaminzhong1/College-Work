@@ -1,3 +1,3 @@
-# This Repo is all the work I've done for and from Queens College between 2021 to Present
+# This repo is all the work I've done for and from Queens College between 2021 to Present.
 
-# The works will come from my cs classes (homeworks, projects, exams) as well as incorpate ideas from non cs classes using the languages I know
+# The project come from the hws, exams, projects from my cs classes along with personal projects incorportating topics from my non cs courses.
