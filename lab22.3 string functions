@@ -1,0 +1,66 @@
+#include <iostream>
+using namespace std;
+
+string upperCase(string a){
+    for(int x=0;x<a.length();x++){
+      if(a[x]<=122 && a[x]>=90){
+        a[x]=a[x]-32;
+      }
+    }
+  return a;
+}
+
+string lowerCase(string a){
+    for(int x=0;x<a.length();x++){
+      if(a[x]<=90 && a[x]>=65){
+        a[x]=a[x]+32;
+      }
+    }
+  return a;
+}
+
+void upperCaseVoid(string a){
+    for(int x=0;x<a.length();x++){
+      if(a[x]<=122 && a[x]>=90){
+        a[x]=a[x]-32;
+      }
+    }
+  cout<<a<<endl;
+}
+
+
+// use & to permanently change the string then code it again for the lowercasevoid function
+
+string angry(string a){
+  for(int x=0;x<a.length();x++){
+   if(a[x]<='.')
+     a[x]='!';
+  }
+  return a;
+}
+
+//turns periods to exclamation marks
+//
+
+
+
+
+int main() {
+  string s = "This is so lame.";
+  s = upperCase(s);
+  cout << s << endl;
+  s = lowerCase(s);
+  cout << s << endl;
+  upperCaseVoid(s);
+  cout << s << endl;
+  //lowerCaseVoid(s);
+  //cout << s << endl;
+  string x = "This Is.Not.CoOol Man :X.";
+  angry(x);
+  cout << x << endl;
+  //fun(x);
+  //cout << x << endl;
+  return 0;
+}
+
+//
