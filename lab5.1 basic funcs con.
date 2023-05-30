@@ -1,0 +1,48 @@
+#include <iostream>
+#include <cstdlib>
+using namespace std;
+
+string hurricane(int x){
+  string h[5]={"74-95", "96-110", "111-130", "131-155", "155<"};
+  if (x>0 && x<5)
+    return h[x];
+  return "1-5 please";
+}
+
+int percent(int x){
+  if (x>=125)
+    return double (x*.9);
+  return x;
+}
+
+int discount(int x){
+  if (x>0 && x<=100)
+    return x*.8;
+  else
+    return x*.6;
+}
+
+string evenodd(int x){
+  if (x%2==0)
+    return "even";
+  else
+    return "odd";
+}
+
+
+int main() {
+int a,b,c,d;
+cout<<"hurricane speeds please enter a category 1 to 5\n";
+cin>>a;
+cout<<"the windspeed is "<<hurricane(a)<<" mph"<<"\n\n";
+cout<<"shoe store please enter a price for 10% off if price is over 125\n";
+cin>>b;
+cout<<percent(b)<<"\n\n";
+cout<<"dollar store please enter a price for 20% off or 40%\n";
+cin>>c;
+cout<<discount(c)<<"\n\n";
+cout<<"even or odd please enter to check\n";
+cin>>d;
+cout<<evenodd(d)<<"\n\n";
+return 0; 
+}
