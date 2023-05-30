@@ -1,0 +1,42 @@
+#include <iostream>
+#include <fstream>
+#include <cstdlib>
+#include <ctime>
+using namespace std;
+//make a string and put everything in this function into that string
+//or just make everything in this function input it into the f1
+//and then copy f1 into f2
+int main(int argc, char*argv[]){
+  ifstream f1;
+  ofstream f2;
+  char *in = argv[1];
+  char *out = argv[2];
+  f2.open(in);
+  srand(time(0));
+  int n=rand()%10+1,sum;
+  f2<<"generated number "<<n<<endl;
+  for (int i=1;i<=n;i++)
+    {
+      sum=0;
+      for(int j=1;j<=i;j++)
+        {
+          f2<<j<<" ";
+          sum+=j;
+        }
+      f2<<"the sum is "<<sum<<endl;
+    }
+  f2.close();
+  f1.open(in);
+  f2.open(out);
+  while(!f1.eof()){
+    char a=f1.get();
+    f2<<a;
+  }
+  f1.close();
+  f2.close();
+ return 0;
+}
+
+//argv[1] is in.txt
+//argv[2] is out.txt
+//change the cout to the stream
