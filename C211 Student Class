@@ -1,0 +1,105 @@
+#include <iostream>
+#include <cstdlib>
+#include <string>
+
+using namespace std;
+
+class Student{
+
+  public: 
+    Student();
+    ~Student();
+    void Input();
+    void Output();
+    void Reset();
+    Student& operator =(const Student& rightSide);
+
+  private:
+    string name;
+    int numClass;
+    string*classList;
+};
+
+Student::Student(){
+  numClass = 0;
+  classList = NULL;
+  name = "";
+}
+
+Student::~Student(){
+  if (classList != NULL){
+    delete [] classList;
+  }
+}
+
+void Student::Reset(){
+  if(classList!=NULL){
+    delete [] classList;
+    classList = NULL;
+  }
+  numClass = 0;
+  name = "";
+  }
+
+void Student::Output(){
+  int i; 
+  cout <<"Name: " << name << endl;
+  cout << "Number of class: " << numClass << endl;
+  for (int i = 0 ; i<numClass ; i++){
+    cout << "Class " << (i+1) << ": " << classList [i] << endl;
+  }
+  cout << endl;
+  }
+
+void Student::Input(){
+  int i;
+  Reset();
+  cout << "Enter your name" << endl;
+  getline(cin, name);
+  cout << "Enter number of classes." << endl;
+  cin >> numClass;
+  cin.ignore(2,'\n');
+  if(numClass>0){
+    classList = new string[numClass];
+    for (int i = 0; i<numClass;i++){
+      cout <<"Enter name of class " << (i+1) << endl;
+      getline(cin, classList[i]);
+    }
+    cout<< endl;
+  }
+  
+}
+
+Student& Student::operator = (const Student& rightSide){
+  int i;
+   Reset();
+  name = rightSide.name;
+  numClass = rightSide.numClass;
+
+  if (numClass>0){
+    classList = new string[numClass];
+    for (int i = 0; i<numClass; i++){
+      classList[i] = rightSide.classList[i];
+    }
+  }
+  return *this;
+}
+
+  int main(){
+  
+  Student s1;
+  s1.Input();
+  cout << "Student 1 : " << endl;
+  s1.Output();
+
+  Student s2;
+  s2 = s1;
+  s1.Reset();
+  cout << "Student 1 after reset function:" << endl; 
+  s1.Output();
+  cout << "Student 2 after copy function:" << endl; 
+  s2.Output();
+
+  cout << endl; 
+  return 0;
+}
