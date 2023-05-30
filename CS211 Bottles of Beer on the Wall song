@@ -1,0 +1,67 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+
+  //create two arrays that could create all possible numbers from 0 to 99
+  
+  const char* num1 [] = { "zero", "one", "two", "three", "four", "five", "six",     "seven" , "eight" , "nine" ,  "ten" , "eleven" , "twelve" , "thirteen" , "fourteen" , "fifteen" , "sixteen" , "seventeen" , "eighteen" , "nineteen" };
+  
+  const char* num2 [] = {"blank","blank","twenty" , "thirty" , "fourty" , "fifty" , "sixty" , "seventy" , "eighty" , "ninety"};
+
+  //user input to set how many beers we start with
+  int x = 99;
+  cout<< "\n" <<"how many beers do you want on the wall?"<<endl;
+  //cin>>x;
+  cout<<"I want 99\n"<<endl;
+
+  //while loop to start the song chain with a x--; at the very end of every loop
+  while(x>=0){
+
+    //condition for # of beers less than 20
+    if (x<20){
+
+      //condition for 0 beers the output message is a custom one
+      if (x==0){
+        cout << num1[x] << " bottles of beer on the wall.\n " << num1[x] << " bottles of beer, \n" << "take none down pass none around \n" << "zero bottles of beer on the wall.\n" << endl;
+      break;
+      }
+
+      //another condition for 1 beer the output message is a custom one because 1 beers is wrong in english so we gotta do 1 beer*
+      else if (x==1){
+        cout << num1[x] << " more bottle of beer on the wall. \n" << num1[x] << " bottles of beer, \n" << "Take one down, pass it around, \n" << num1[x-1] << " bottles of beer on the wall.\n" << endl;
+      }
+
+      //the condition for the rest of the x<20 numbers 
+      else {
+      cout << num1[x] << " bottles of beer on the wall. \n" << num1[x] << " bottles of beer, \n" << "Take one down, pass it around, \n" << num1[x-1] << " bottles of beer on the wall.\n" << endl;
+      }
+      
+    }
+
+    //condition for #s 20 and greater to 99
+    else if (x<100 && x>=20){
+
+      //if statement for the multiples of 10
+      if (x%10==0){
+        cout << num2[x/10] << " bottles of beer on the wall\n" << num2[x/10] << " bottles of beer, \n" << "Take one down, pass it around, \n" << num2[(x/10)-1] << "-" << num1[9] << " bottles of beer on the wall.\n" <<endl;
+      }
+
+      //condition for the numbers of the multiples+1 because they also have a special custom message which makes the cout/output a multiple of ten different from the following condition
+      else if (x%10==1){
+        cout << num2[x/10] << "-" << num1[x%10] << " bottles of beer on the wall.\n" << num2[x/10] << "-" << num1[x%10] << " bottles of beer, \n" << "Take one down, pass it around, \n" << num2[x/10] << " bottles of beer on the wall.\n" << endl;
+      }
+
+      //general condition for all numbers not multiples of 10, numbers greater than 20, and numbers that don't have a remainder of 1 if divided by 10
+      else {
+      cout << num2[x/10] << "-" << num1[x%10] << " bottles of beer on the wall.\n" << num2[x/10] << "-" << num1[x%10] << " bottles of beer, \n" << "Take one down, pass it around, \n" << num2[x/10] << "-" << num1[(x%10)-1] << " bottles of beer on the wall.\n" << endl;
+        }
+    }
+
+    //x-- to take one bottle of beer off the wall after each loop
+    x--;
+    
+  }  
+  
+  return 0;
+} 
