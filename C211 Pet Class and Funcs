@@ -1,0 +1,139 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+//pet class that has public call functions and private variables
+class Pet{
+
+  //public member functions
+  public: 
+    Pet();
+    Pet(string newName, int newAge, int newWeight);
+    void setName(string newName);
+    string getName();
+    void setAge(int newAge);
+    int getAge();
+    void setWeight(int newWeight);
+    int getWeight();
+    string getLifespan();
+
+  //private variables
+  private:
+    string name;
+    int age;  
+    int weight;
+};
+
+//default constructor
+Pet::Pet() : age(0), weight(0), name(""){}
+
+//contructor
+Pet::Pet(string newName, int newAge, int newWeight) : age(newAge), weight(newWeight), name(newName){}
+
+//setter name of our pet 
+void Pet::setName(string newName){
+  name = newName;
+}
+
+//getter name of our pet
+string Pet::getName(){
+  return name;
+}
+
+//setter for age
+void Pet::setAge(int newAge){
+  age = newAge;
+}
+
+//getter for age
+int Pet::getAge(){
+  return age;
+}
+
+//setter for weight
+void Pet::setWeight(int newWeight){
+  weight = newWeight;
+}
+
+//getter for weight
+int Pet::getWeight(){
+  return weight;
+}
+
+string Pet::getLifespan(){
+  return "unknown lifespan";
+}
+
+//dog class nested inside the pet class, this allows the new objects created by dog to take on the elements of the pet class
+class Dog : public Pet{
+
+  public:
+    Dog();
+    Dog(string newName, int newAge, int newWeight, string newBreed);
+    void setBreed(string newBreed);
+    string getBreed();
+    string getLifespan();
+  private:
+    string breed;
+};
+
+//default constructor for the dog class
+Dog::Dog() : Pet(), breed(""){}
+
+//constructor with user input
+Dog::Dog(string newName, int newAge, int newWeight, string newBreed) : Pet(newName, newAge, newWeight), breed(newBreed){}
+
+//setter for dogsbreed
+void Dog::setBreed(string newBreed){
+  breed = newBreed;
+}
+
+//getter for dogs breed
+string Dog::getBreed(){
+  return breed;
+}
+
+//getter for lifespan varies depending on weight of dog
+string Dog::getLifespan(){
+  if (this->getWeight() <= 100)return "Approximately 13 years";
+  else
+  return "Approximately 7 years";
+}
+
+//rock class that takes in the elements of pet class as well just like dog class, rock class is nested inside the pet class just like dog
+class Rock : public Pet{
+  public:
+  Rock();
+  Rock(string newName, int newAge, int newWeight);
+  string getLifespan();
+};
+
+//constructor for rock class
+Rock::Rock(string newName, int newAge, int newWeight): Pet(newName, newAge, newWeight){
+  
+}
+//default constructor for rock class
+Rock::Rock() : Pet(){
+}
+
+string Rock::getLifespan(){
+  return "forever";
+}
+
+int main() {
+  //creating lucky dog from dog class
+  Dog dog1("lucky", 14, 20, "shih tzu");
+  
+  cout << dog1.getName() << ", age " << dog1.getAge() <<", weight " << dog1.getWeight() << ", breed " <<dog1.getBreed() << endl;
+  
+  cout << dog1.getLifespan() << endl << endl;
+
+  //creating rocky dock from rock class
+  Rock rocky("rocky", 1, 5);
+  
+  cout << rocky.getName() << ", age " << rocky.getAge() <<", weight " << rocky.getWeight() << endl;
+  
+  cout << rocky.getLifespan() << endl << endl;
+  
+  return 0;
+}
