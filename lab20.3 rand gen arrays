@@ -1,0 +1,54 @@
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
+using namespace std;
+int main()   
+  {
+    srand(time(0));
+    int c=rand()%5+1;
+    int r=rand()%5+1;
+    int one[r][c];
+    int two[r][c];
+    int three[r][c];
+
+    cout << "row: " << r << ", col: " << c << endl;
+    for(int x=0;x<r;x++)
+      { 
+        for(int y=0;y<c;y++)
+          { 
+            int a=rand()%9+1;
+            int b=rand()%9+1;
+            one[x][y]=a;
+            two[x][y]=b;
+            three[x][y]=a+b; //
+          }
+      }
+
+    cout << "one: " << endl;
+    for(int x=0;x<r;x++)
+      {for(int y=0;y<c;y++)
+        {
+          cout<<one[x][y] << " ";
+        }
+        cout<<endl;
+      }
+
+    cout << endl << "two: " << endl;
+    for(int x=0;x<r;x++)
+      {for(int y=0;y<c;y++)
+        {
+          cout<<two[x][y] << " ";
+        }
+        cout<<endl;
+      }
+
+    cout << endl << "three: " << endl;
+    for(int x=0;x<r;x++)
+      {for(int y=0;y<c;y++)
+        {
+          cout<<three[x][y] << " ";
+        }
+        cout<<endl;
+      }  
+        return 0;
+  }
