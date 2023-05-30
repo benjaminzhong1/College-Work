@@ -1,0 +1,58 @@
+//comparecstr.cpp
+//This program compares two C-Strings for equality.
+//It ignores case, punctuation, whitespace, and control characters.
+#include <iostream>
+#include <cstdlib>
+#include <cstring>
+#include <cctype>
+using namespace std;
+
+// Function prototype
+bool MyCompare(char s1[], char s2[]);
+
+bool MyCompare(char s1[], char s2[]){
+  
+  // Separate index variables both string 1 and string 2  
+  int i1=0, i2=0;  
+  char c1, c2; 
+  // Char from string 1, string 2  int i
+  
+  while ((i1 < strlen(s1)) && (i2 < strlen(s2))){
+    // Skip any whitespace, punctuation, or control characers in str 1      
+    while ((ispunct(s1[i1])) || (isspace(s1[i1]))){      
+      i1++;      
+      }
+    // Skip any whitespace, punctuation, or control characers in str 2      
+    while ((ispunct(s2[i2])) || (isspace(s2[i2]))){      
+      i2++;      
+      }
+    // Compare characters at i1 and i2 of each string.      
+    // If they differ, then exit.        
+    if (tolower(s2[i2])!=tolower(s1[i1])){      
+      return false;      
+      }
+    // Move to the next character      
+    if (i1 < strlen(s1)){             
+      i1++;      
+      }
+    if (i2 < strlen(s2)){             
+      i2++;
+      }
+    }
+
+  // If one index is at the end but the other is not, return false.  
+  // This can occur if one string is a prefix of the other, but  
+  // of shorter length.  
+  if ((i1 == strlen(s1)) && (i2 == strlen(s2))){
+    return true;  
+    }  
+  
+  return false;
+  }
+
+int main(){  
+  // Test MyCompare with some sample C-Strings  
+  cout << "Compare 'FooBar1' with 'foo ,  bar1' : " <<  MyCompare("FooBar1","foo , bar1") << endl;   
+  cout << "Compare 'FooBar' with 'foo ,  bar zot' : " <<  MyCompare("FooBar","foo , bar zot") << endl;  
+  cout << "Compare 'FooBar-...zot' with 'foo ,  bar zot' : " <<  MyCompare("FooBar-...zot","foo , bar zot") << endl;  
+  cout << "Compare 'aaaa' with 'aa' : " <<  MyCompare("aaaa","aa") << endl;  cout << endl;  return 0;}
