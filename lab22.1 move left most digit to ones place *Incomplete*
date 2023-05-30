@@ -1,0 +1,23 @@
+#include <iostream>
+using namespace std;
+
+int firstdigitlast(int a){
+    if(a>0 && a<10){
+      return a;
+    }
+    
+  
+}
+    
+
+int main() {
+cout << firstdigitlast(19683) << endl; 
+  // prints 96831
+cout << firstdigitlast(1024) << endl; 
+  // prints 241 because the 0 disappears
+cout << firstdigitlast(19) << endl; 
+  // prints 91
+cout << firstdigitlast(9) << endl; 
+  // prints 9
+return 0;
+}
