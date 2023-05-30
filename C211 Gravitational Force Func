@@ -1,0 +1,15 @@
+#include <iostream>
+using namespace std;
+
+//gravity function, void function cause it doesnt need to return anything and just c out the formula of gravitational force using the 3 double arguments, the constant is made in the function when called
+void gravity (double x, double y,double z){
+  double Gconstant = 6.673e-008;
+  cout << ((Gconstant*x*y)/(z*z)) << " g * cm/sec^2" << endl;
+}
+
+int main() {
+  double m1,m2,distance;
+  cout << "enter both masses, and distance between both planets: " << endl;
+  cin >> m1 >> m2 >> distance;
+  gravity(m1,m2,distance);
+}
