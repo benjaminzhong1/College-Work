@@ -1,0 +1,68 @@
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
+using namespace std;
+
+string compare(int x, int y, int z){
+  if (x>y && y>z)
+    return "decreasing\n";
+  else if (y>x && z>y)
+    return "increasing\n";
+  else
+    return "neither\n";
+}
+
+int month(int x){
+  int a[12]={31,28,31,30,31,30,31,31,30,31,30,31};
+  if (x>0 && x<=12)
+  return a[x-1];
+  else 
+  return 0;
+}
+
+char grade(int x){
+  if (x<44)
+    return 'F';
+  else if (x>=45 && x<=49)
+    return 'D';
+  else if (x>=50 && x<=59)
+    return 'C';
+  else if (x>=60 && x<=80)
+    return 'B';
+  else
+    return 'A';
+}
+
+string triangle(int x, int y, int z){
+  if (x+y+z==180){
+    if (x==y==z){
+      return "equilateral triangle";
+    }
+    else if (x==90 || y==90 || z==90){
+      return "right triangle";
+    }
+    else 
+      return "regular triangle";
+  }
+  return "not a triangle";
+}
+
+int main() {
+  int x,y,z;
+  cout<<"enter 3 numbers"<<endl;
+  cin>>x>>y>>z;
+  cout<<compare(x,y,z)<<endl;
+  int a;
+  cout<<"enter a month "<<endl;
+  cin>>a;
+  cout<<month(a)<<" days\n\n";
+  int b;
+  cout<<"enter a numeric score"<<endl;
+  cin>>b;
+  cout<<grade(b)<<endl<<endl;
+  int c,d,e;
+  cout<<"triangle checker - enter three angle values in degrees "<<endl;
+  cin>>c>>d>>e;
+  cout<<triangle(c,d,e)<<endl<<endl;
+  return 0;
+}
