@@ -1,0 +1,22 @@
+#include <iostream>
+using namespace std;
+
+void change(int coin,int& coinsnum, int& amountleft){
+  int quarter = 0;
+  int dimes = 0;
+  int pennies = 0;
+  if (amountleft>0 && amountleft<100){
+    quarter=amountleft
+    
+  }
+  else{
+    cout<<"amount has to be between 1 and 99 cents..."<<endl;
+  }
+}
+
+
+
+
+int main() {
+  std::cout << "Hello World!\n";
+}
