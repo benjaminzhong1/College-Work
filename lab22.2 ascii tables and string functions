@@ -1,0 +1,25 @@
+#include <cstring>
+#include <iostream>
+using namespace std;
+
+int main() {
+  string s = "hello";
+  string c = "bye";
+  char a = 'a';
+  s[0] = s[0] - 32;
+  a = a - 32;
+  cout << a << endl;
+  cout << s << endl;
+  cout << s.length() << endl;
+  cout << s.size() << endl;
+
+  char cs[] = "Queens College";
+  cout << strlen(cs) << endl;
+  cout << s.c_str() << endl;
+  cout << strlen(s.c_str()) << endl;
+  //string to c string strcpy 
+  strcpy(cs, s.c_str());
+  cout << cs << endl;
+
+  return 0;
+}
