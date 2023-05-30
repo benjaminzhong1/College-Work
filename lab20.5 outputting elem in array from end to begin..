@@ -1,0 +1,17 @@
+#include <iostream>
+using namespace std;
+int main() 
+  {
+  string a1[5];
+  cout<<"how many words? 5"<<endl;
+  for(int x=0;x<5;x++)
+    {
+      cout<<"enter word #"<<x<<endl;
+      cin>>a1[x];
+    } 
+  for (int y=4;y>=0;y--)
+    {
+      cout<<a1[y]<<" ";
+    }
+return 0;
+}
