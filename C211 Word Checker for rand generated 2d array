@@ -1,0 +1,157 @@
+#include <fstream>
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+const int BOARDSIZE = 4;
+
+int NUM_TOTAL_LETTERS = 26;
+
+char getRandomLetter() {
+    return toupper( 'A' + rand() % (NUM_TOTAL_LETTERS) );
+}
+
+//classs Board that represents a boad, and has a recursive function that checks whether a
+               // word is present on the board or no
+class Board {
+    char board[BOARDSIZE][BOARDSIZE];
+
+public:
+    Board() {
+        for(int i = 0; i < BOARDSIZE; i++) {
+            for(int j = 0; j < BOARDSIZE; j++) {
+                board[i][j] = getRandomLetter();
+            }
+        }
+    }
+
+    void printBoard() {
+        for(int i = 0; i < BOARDSIZE; i++) {
+            for(int j = 0; j < BOARDSIZE; j++) {
+                cout << board[i][j] << "  ";
+            }
+            cout << endl;
+        }
+        cout << "endl";
+    }
+
+    // returns true of the board has the given char
+    bool boardHasChar(char c) {
+        for(int i = 0; i < BOARDSIZE; i++) {
+            for(int j = 0; j < BOARDSIZE; j++) {
+                if( toupper(c) == board[i][j] ) {
+                    return true;
+                }
+            }
+        }
+        
+        return false;
+    }
+
+    // returns the row and col of the word if that word is on the board
+    void getRowCol(char c, int *row, int *col) {
+        for(int i = 0; i < BOARDSIZE; i++) {
+            for(int j = 0; j < BOARDSIZE; j++) {
+                if( toupper(c) == board[i][j] ) {
+                    *row = i;
+                    *col = j;
+                    return;
+                }
+            }
+        }
+        cout << "ERROR in getRowCol" << endl;
+    }
+
+    // returns true of the two chars are on the board and they are neighbors according to the rules of the board
+    bool neighbor(char c1, char c2) {
+        if( !boardHasChar(c1) || !boardHasChar(c2))
+            return false;
+
+        int row1, col1, row2, col2;
+
+        getRowCol(c1, &row1, &col1);
+        getRowCol(c2, &row2, &col2);
+
+        int row_diff = row1 - row2;
+        int col_diff = col1 - col2;
+
+        if( abs(row_diff) == 1 && abs(col_diff) == 1) 
+            return true;
+
+        if( abs(row_diff) == 1 && abs(col_diff) == 0) 
+            return true;
+
+        
+        if( abs(row_diff) == 0 && abs(col_diff) == 1) 
+            return true;
+
+        return false;
+    }
+
+
+    // recursive function that retuns true if the given word can be formed by this board
+    // according to given rules.
+    bool whetherValidWord( string word, string usedLetters) {
+        if( word.size() == 0) {
+            return true;
+        }
+
+        // ignore if its already present 
+        for( int i = 0; i < usedLetters.size(); i++) {
+            if( usedLetters[i] == word[0]) {
+                return false;
+            }
+        }
+
+        if( boardHasChar(word[0])) {
+            usedLetters += word[0];
+
+            if( word.size() == 1) {
+                return true;
+            }
+            else {
+                // first check that the 2nd letter is a neighbor
+                if( neighbor(word[0], word[1])) {
+                    return whetherValidWord(word.substr(1), usedLetters);
+                } else {
+                    return false; // not a neighbor, so return false
+                }
+                
+            }
+        } else {
+            return false;
+        }
+
+    }
+
+    // printIfValid will print the word if its a valid word
+    void printIfValid(string word) {
+        string usedLetters = "";
+        bool result = whetherValidWord(word, usedLetters);
+        if( result == true) {
+            cout << word << endl;
+        }
+    }
+
+};
+
+int main() {
+    srand(time(0)); // initialize random seed
+    Board b;
+
+    string wordsListFilename = "words.txt";
+    ifstream file(wordsListFilename.c_str());
+    string  word;
+   
+    // reading words from the file
+    while (file >> word)
+    {
+        // checking if its on the board according to the rules
+        b.printIfValid(word); // this will print the word if its there on the board
+    }
+
+    b.printBoard();
+
+    return 0;
+}
