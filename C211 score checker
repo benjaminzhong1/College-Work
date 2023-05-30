@@ -1,0 +1,24 @@
+#include <iostream>
+using namespace std;
+int main() {
+  //create 4 double variables one is for the amount of scores they have which is then used into the for loop
+  //the 2nd is a total for the overall score total of all their tests
+  //the 3rd is their score total for their tests
+  //and the third is a temp variable to add their scores to the 2nd and 3rd variables
+  double count = 0, total = 0, yourtotal = 0, temp =0;
+  cout<<"how many scores do you have? ";
+  cin>>count;
+  for (int x = 1 ; x<=count ; x++){
+    cout<<"Score received for exercise " << x << ": ";
+    cin>>temp;
+    yourtotal = yourtotal + temp;
+    temp = 0;
+    cout<<endl;
+    cout<<"Total points possible for exercise " << x << ": ";
+    cin>>temp;
+    total = total + temp;
+    cout<<endl;
+  }
+  cout << "Your total is " << yourtotal <<  " out of " << total << " or " << (yourtotal/total)*100 << "%\n";
+  return 0;
+  }
